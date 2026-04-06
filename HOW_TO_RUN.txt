@@ -1,0 +1,48 @@
+HOW TO RUN (Project2 – Vite + React)
+
+Prerequisites
+- Node.js 18 or newer (LTS recommended)
+- npm (comes with Node)
+
+1) Install dependencies
+   Open a terminal in the project folder and run:
+   npm install
+
+2) Environment variables (optional but needed for features)
+   Create a file named .env in the project root (same folder as package.json).
+   Vite only exposes variables that start with VITE_.
+
+   Admin login (/admin):
+   VITE_ADMIN_EMAIL=your-admin@email.com
+   VITE_ADMIN_PASSWORD=your-secure-password
+
+   Syllabus image extraction (Admin – OpenAI vision):
+   VITE_OPENAI_API_KEY=sk-...
+
+   PES-PAL chat on the dashboard (Gemini + Groq fallback):
+   VITE_GEMINI_API_KEY=...
+   VITE_GROQ_API_KEY=...
+
+   Important: Anything in .env with the VITE_ prefix is bundled into the
+   client build. Do not commit real secrets to public repos; use a backend
+   proxy in production if you need to hide keys.
+
+3) Start the dev server
+   npm run dev
+
+   The terminal will print a local URL (usually http://localhost:5173).
+   Open it in your browser.
+
+4) Production build (optional)
+   npm run build
+   The output is written to the dist/ folder. Serve dist/ with any static
+   file host.
+
+5) Data storage
+   The app stores course data in the browser under localStorage key
+   pesitm_db_v1. Clearing site data for this origin will reset that data.
+
+Troubleshooting
+- If admin or AI features say a key is missing, check .env spelling and that
+  variable names start with VITE_, then restart npm run dev after changing .env.
+- If npm install fails, ensure Node is 18+ and try again after a clean clone.
